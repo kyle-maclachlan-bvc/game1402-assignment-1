@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 7.5f;          // Fixed Jump Height, WORK TO MAKE IT VARIABLE JUMP
     [SerializeField] private float acceleration = 30f;
     [SerializeField] private float deceleration = 30f;
-    [SerializeField] private InputMananger inputManager;    // Name is misspelled to ManaNger rather than Manager;
+    [SerializeField] private InputManager inputManager;    // Name is misspelled to ManaNger rather than Manager;
     [SerializeField] private float _jumpMultiplier = 0.7f;
     
     private float _horizontalInput = 0;
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 startPointOffset;  //offset is how far from the player center our point is located
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float checkDelay;
-    [SerializeField] private float coyoteTime = 0.1f;
-    [SerializeField] private float delayTime;
+    //[SerializeField] private float coyoteTime = 0.1f;
+    //[SerializeField] private float delayTime;
 
     
     [Header("Death Check")]
