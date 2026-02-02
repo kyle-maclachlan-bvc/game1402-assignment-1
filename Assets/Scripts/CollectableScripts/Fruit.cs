@@ -6,7 +6,7 @@ public class Fruit : MonoBehaviour, ICollectable
     
     public string FruitType => _fruitType;
 
-public void OnCollect()
+public void OnCollect(GameObject collector)
     {
         GameManager.Instance.AddFruit(_fruitType);
         Destroy(gameObject);

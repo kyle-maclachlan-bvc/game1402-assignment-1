@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Lives")]
     [SerializeField] private int maxLives = 6;
     private int currentLives;
-
+    
     private void Awake()
     {
         // Singleton setup
@@ -81,8 +81,19 @@ public class GameManager : MonoBehaviour
         if (player != null)
             player.enabled = false;
         
-        // show victory UI
+        ShowTutorialMessage("You collected 30 fruit!\nYou Win!\n \nUnfortunately, the second world is still under development,\nHope you enjoyed this level!");
+        
         // play sound
         // load next scene
+    }
+
+    public void ShowTutorialMessage(string message)
+    {
+        HUDManager.Instance.ShowTutorialMessage(message);
+    }
+
+    public void HideTutorialMessage()
+    {
+        HUDManager.Instance.HideTutorialMessage();
     }
 }

@@ -97,11 +97,6 @@ public class PlayerController : MonoBehaviour
     {
         _horizontalInput = value * 2f;
     }*/
-
-    private void Update()
-    {
-        
-    }
     
     private void FixedUpdate()
     {
@@ -220,6 +215,17 @@ public class PlayerController : MonoBehaviour
         isDead = false;
 
     }
-    
+
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        
+        Debug.Log($"Player HP: {currentHealth}/{maxHealth}");
+        
+        HUDManager.Instance.UpdateHealth(currentHealth,  maxHealth);
+    }
     
 }

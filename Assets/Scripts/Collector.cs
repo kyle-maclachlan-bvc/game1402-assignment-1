@@ -8,7 +8,7 @@ public class Collector : MonoBehaviour
 
         if (otherCollectable != null)
         {
-            otherCollectable.OnCollect();
+            otherCollectable.OnCollect(gameObject);
         }
     }
 }

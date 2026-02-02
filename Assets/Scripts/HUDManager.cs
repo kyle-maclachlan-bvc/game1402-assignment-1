@@ -11,6 +11,9 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI healthText;
 
+    [Header("Tutorial UI")]
+    [SerializeField] private TextMeshProUGUI tutorialText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -38,5 +41,17 @@ public class HUDManager : MonoBehaviour
     public void UpdateHealth(int current, int max)
     {
         healthText.text = current + " / " + max;
+    }
+    
+    // Tutorial Methods
+    public void ShowTutorialMessage(string message)
+    {
+        tutorialText.text = message;
+        tutorialText.gameObject.SetActive(true);
+    }
+
+    public void HideTutorialMessage()
+    {
+        tutorialText.gameObject.SetActive(false);
     }
 }

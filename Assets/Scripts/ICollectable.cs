@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface ICollectable
 {
-    public void OnCollect();
+    public void OnCollect(GameObject collector);
 }
