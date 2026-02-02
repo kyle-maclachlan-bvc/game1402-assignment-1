@@ -213,7 +213,30 @@ public class PlayerController : MonoBehaviour
         RespawnManager.Instance.RespawnPlayer(gameObject);
 
         isDead = false;
+    }
 
+    public void HidePlayer()
+    {
+        // Disable rendering
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if (sprite != null)
+            sprite.enabled = false;
+        
+        // Disable collisions
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+        
+        // Stop Movement
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+        
+        // Disable player logic
+        enabled = false;
     }
 
     public void Heal(int amount)

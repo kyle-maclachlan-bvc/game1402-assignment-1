@@ -49,10 +49,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        PlayerController player = FindObjectOfType<PlayerController>();
         Debug.Log("GAME OVER");
-        // UI will go here later
+        
         // disable player movement, stop game, etc.
-        Time.timeScale = 0;     // pauses game.
+        player.enabled = false;
+        player.HidePlayer();
+        ShowTutorialMessage("----- GAME OVER -----\n \nGood try, you can always try again.");
+       Time.timeScale = 0;     // pauses game.
     }
 
     public void AddFruit(string fruitType)
