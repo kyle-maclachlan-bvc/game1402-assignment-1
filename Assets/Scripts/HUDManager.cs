@@ -13,6 +13,9 @@ public class HUDManager : MonoBehaviour
 
     [Header("Tutorial UI")]
     [SerializeField] private TextMeshProUGUI tutorialText;
+    
+    [Header("Timer")]
+    [SerializeField] private TextMeshProUGUI timerText;
 
     private void Awake()
     {
@@ -53,5 +56,14 @@ public class HUDManager : MonoBehaviour
     public void HideTutorialMessage()
     {
         tutorialText.gameObject.SetActive(false);
+    }
+    
+    // Timer Methods
+    public void UpdateTimer(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60f);
+        int seconds = Mathf.FloorToInt(time % 60f);
+
+        timerText.text = $"Time: {minutes:00}:{seconds:00}";
     }
 }

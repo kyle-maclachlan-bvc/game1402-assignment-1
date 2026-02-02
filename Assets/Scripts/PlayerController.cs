@@ -36,8 +36,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 deathRayOffset;    // Offset is how far from the player center our point is located. groundCheckDistance and startPointOffset COULD be used.
     
     [Header("Health")]      // These attributes check how much health the player had during the gameplay.
-    [SerializeField] private int maxHealth = 8;
-
+    [SerializeField] private int maxHealth = 8; 
+    private int currentHealth;
+    
+    private bool isDead = false;
+    
     // invicibility frames
     private float damageCooldown = 0.5f;
     private float lastDamageTime = -999f;
@@ -46,9 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float knockbackForce = 8f;
     [SerializeField] private float knockbackUpForce = 4f;
 
-    private bool isDead = false;
-
-    private int currentHealth;
+    
     
     void Awake()
     {
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
         inputManager.OnMove += HandleMoveInput;
         inputManager.JumpRelease += HandleJumpCancel;
         inputManager.OnInteract += HandleInteract;
+        inputManager.OnPause += HandlePause;
         //inputManager.OnRunning += HandleRunInput;
     }
 
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
         inputManager.OnMove -= HandleMoveInput;
         inputManager.JumpRelease -= HandleJumpCancel;
         inputManager.OnInteract -= HandleInteract;
+        inputManager.OnPause -= HandlePause;
         //inputManager.OnRunning -= HandleRunInput;
     }
 
@@ -154,6 +157,11 @@ public class PlayerController : MonoBehaviour
         if (!interactPressed) return false;
         interactPressed = false;
         return true;
+    }
+
+    void HandlePause()
+    {
+        GameManager.Instance.TogglePause();
     }
 
     public void TakeDamage(int damage)

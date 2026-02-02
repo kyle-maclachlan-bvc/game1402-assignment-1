@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +15,13 @@ public class GameManager : MonoBehaviour
     [Header("Lives")]
     [SerializeField] private int maxLives = 6;
     private int currentLives;
+
+    [Header("Level Timer")] 
+    [SerializeField] private float levelTime;
+    [SerializeField] private bool timerRunning = true;
+    
+    [Header("Pause")]
+    [SerializeField] private bool isPaused = false;
     
     private void Awake()
     {
@@ -28,8 +36,18 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        Debug.Log("Timer Running: " + timerRunning);
+        
         currentLives = maxLives;
         Debug.Log($"Lives: {currentLives}");
+    }
+
+    public void Update()
+    {
+        if (!timerRunning) return;
+
+        levelTime += Time.deltaTime;
+        HUDManager.Instance.UpdateTimer(levelTime);
     }
 
     public int GetLives()
@@ -50,6 +68,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         PlayerController player = FindObjectOfType<PlayerController>();
+        timerRunning = false;
         Debug.Log("GAME OVER");
         
         // disable player movement, stop game, etc.
@@ -82,6 +101,8 @@ public class GameManager : MonoBehaviour
         
         //freeze the player for now.
         PlayerController player = FindObjectOfType<PlayerController>();
+        timerRunning = false;
+        
         if (player != null)
             player.enabled = false;
         
@@ -100,4 +121,32 @@ public class GameManager : MonoBehaviour
     {
         HUDManager.Instance.HideTutorialMessage();
     }
+
+    public void TogglePause()
+    {
+        if (isPaused)
+            ResumeGame();
+        else
+        
+            PauseGame();
+    }
+
+    private void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0;
+        timerRunning = false;
+        
+        ShowTutorialMessage("----- GAME PAUSED -----\n \nPress ESC, or the Menu Buttons to Resume.");
+    }
+
+    private void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        timerRunning = true;
+
+        HideTutorialMessage();
+    }
+    
 }
