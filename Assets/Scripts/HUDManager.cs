@@ -1,0 +1,42 @@
+using TMPro;
+using UnityEngine;
+
+public class HUDManager : MonoBehaviour
+{
+    public static HUDManager Instance;
+    
+    [Header("Counters")]
+    [SerializeField] private TextMeshProUGUI fruitText;
+    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI healthText;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+    
+    // Update Methods
+    public void UpdateFruit(int current, int win)
+    {
+        fruitText.text = current +  " / " + win;
+    }
+
+    public void UpdateCoin(int value)
+    {
+        coinText.text = value.ToString();
+    }
+
+    public void UpdateLives(int value)
+    {
+        livesText.text = value.ToString();
+    }
+
+    public void UpdateHealth(int current, int max)
+    {
+        healthText.text = current + " / " + max;
+    }
+}

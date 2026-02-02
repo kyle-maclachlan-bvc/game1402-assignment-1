@@ -2,9 +2,18 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour, ICollectable
 {
-    public void OnCollect()
+    [SerializeField] private string _fruitType;
+    
+    public string FruitType => _fruitType;
+
+public void OnCollect()
     {
-        Debug.Log("Fruit Collected");
+        GameManager.Instance.AddFruit(_fruitType);
         Destroy(gameObject);
+    }
+
+    public void SetFruitType(string fruitType)
+    {
+        _fruitType = fruitType;
     }
 }

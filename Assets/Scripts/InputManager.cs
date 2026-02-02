@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     public System.Action<float> OnMove;
     public System.Action JumpRelease;
     public System.Action<float> OnRunning;
+    public System.Action OnInteract;
 
     
     void Awake()
@@ -23,6 +24,7 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.Jump.performed += OnJumpPressed;
         _playerInputActions.Player.Jump.canceled += OnJumpRelease;
         _playerInputActions.Player.Run.performed += OnRunPressed;
+        _playerInputActions.Player.Interact.performed += OnInteractPressed;
         //_playerInputActions.Player.Horizontal.performed += OnMovement;
     }
 
@@ -31,6 +33,7 @@ public class InputManager : MonoBehaviour
         _playerInputActions.Player.Jump.performed -= OnJumpPressed;
         _playerInputActions.Player.Jump.canceled -= OnJumpRelease;
         _playerInputActions.Player.Run.performed -= OnRunPressed;
+        _playerInputActions.Player.Interact.performed -= OnInteractPressed;
         //_playerInputActions.Player.Horizontal.performed -= OnMovement;
 
     }
@@ -57,6 +60,11 @@ public class InputManager : MonoBehaviour
     {
         OnRunning?.Invoke(_playerInputActions.Player.Horizontal.ReadValue<float>());
         Debug.Log("Running Pressed.");
+    }
+
+    void OnInteractPressed(InputAction.CallbackContext context)
+    {
+        OnInteract?.Invoke();
     }
     
     void Update()

@@ -4,7 +4,7 @@ public class Coin : MonoBehaviour, ICollectable
 {
     public void OnCollect()
     {
-        Debug.Log("Coin Collected");
+        GameManager.Instance.AddCoin();
         Destroy(gameObject);
     }
 }

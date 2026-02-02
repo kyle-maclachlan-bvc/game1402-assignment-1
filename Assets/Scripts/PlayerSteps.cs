@@ -10,7 +10,7 @@ public class PlayerSteps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(targetTag))
         {
-            Debug.Log("Trigger Particles");
+            //Debug.Log("Trigger Particles");
             footstepEffect.Play();
         }
     }
