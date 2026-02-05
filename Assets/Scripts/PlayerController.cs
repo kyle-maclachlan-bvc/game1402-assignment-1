@@ -9,10 +9,10 @@ public class PlayerController : MonoBehaviour
     // [serialized] is an attribute that makes the private variables editable in the inspector windows 
     [Header("Player Movement")] // All these attributes are dedicated to the movement of the player:
     [SerializeField] private float moveSpeed = 5f;              // The player's horizontal movement speed
-    [SerializeField] private float jumpForce = 7.5f;            // Fixed Jump Height, WORK TO MAKE IT VARIABLE JUMP
+    [SerializeField] private float jumpForce = 7.5f;            // Fixed Jump Height,
     [SerializeField] private float acceleration = 30f;          // 
     [SerializeField] private float deceleration = 30f;          // 
-    [SerializeField] private InputManager inputManager;         // Name is misspelled to ManaNger rather than Manager;
+    [SerializeField] private InputManager inputManager;         //
     [SerializeField] private float _jumpMultiplier = 0.7f;      
     [SerializeField] private bool interactPressed;              // allows the player to enter doors / entry ways
     
